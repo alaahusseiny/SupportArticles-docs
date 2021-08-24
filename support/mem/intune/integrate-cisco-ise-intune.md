@@ -109,6 +109,19 @@ These values are used when you [configure the Microsoft Intune server in ISE](#c
 
 ## Configure API permissions
 
+**Azure Active Directory** 
+ In the [Azure portal](https://portal.azure.com/), select **Azure Active Directory** > **App registrations**, and then select the ISE application.
+2. Select **API permissions** > **Add a permission**.
+3. Select **Azure Active Directory API** from the APIs.
+4. Select **Delegated permissions**, and then select the following permissions:
+   
+   |Permission|Description|
+   |----------|-----------|
+   |`Directory.Read.All`|Read directory data|
+   |`User.Read`|Sign in and read user profile|
+5. Select **Application permissions**, expand **Directory**, and then select the `Directory.Read.All` permission.
+
+**Microsoft Graph**
 1. In the [Azure portal](https://portal.azure.com/), select **Azure Active Directory** > **App registrations**, and then select the ISE application.
 2. Select **API permissions** > **Add a permission**.
 3. Select **Microsoft Graph** from the APIs.
