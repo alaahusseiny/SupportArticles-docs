@@ -367,8 +367,7 @@ To filter and export the sign-in log entries:
     $pathForExport = "./"  # The path to the local filesystem for export of the CSV file.
 
     Connect-MgGraph -Scopes "AuditLog.Read.All" -TenantId $tId  # Or use Directory.Read.All.
-    Select-MgProfile "beta"  # Low TLS is available in Microsoft Graph preview endpoint.
-
+    
     # Define the filtering strings for interactive and non-interactive sign-ins.
     $procDetailFunction = "x: x/key eq 'legacy tls (tls 1.0, 1.1, 3des)' and x/value eq '1'"
     $clauses = (
@@ -379,9 +378,9 @@ To filter and export the sign-in log entries:
     )
 
     # Get the interactive and non-interactive sign-ins based on filtering clauses.
-    $signInsInteractive = Get-MgAuditLogSignIn -Filter ($clauses[0,3] -Join " and ") -All
-    $signInsNonInteractive = Get-MgAuditLogSignIn -Filter ($clauses[0,1,3] -Join " and ") -All
-    $signInsWorkloadIdentities = Get-MgAuditLogSignIn -Filter ($clauses[0,2,3] -Join " and ") -All
+    $signInsInteractive = Get-MgBetaAuditLogSignIn -Filter ($clauses[0,3] -Join " and ") -All
+    $signInsNonInteractive = Get-MgBetaAuditLogSignIn -Filter ($clauses[0,1,3] -Join " and ") -All
+    $signInsWorkloadIdentities = Get-MgBetaAuditLogSignIn -Filter ($clauses[0,2,3] -Join " and ") -All
 
     $columnList = @{  # Enumerate the list of properties to be exported to the CSV files.
         Property = "CorrelationId", "createdDateTime", "userPrincipalName", "userId",
